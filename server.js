@@ -1,11 +1,13 @@
-const express = require("express");
-require("dotenv").config();
-const Product = require("./models/productModel.js");
+import express from "express";
+import "dotenv/config";
+import Product from "./models/productModel.js";
+import { Connect_DB } from "./util/Connect_DB";
 const app = express();
+Connect_DB();
 
 app.use(express.json());
 
-const mongoose = require("mongoose");
+const port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.send("hello from the other side");
@@ -29,14 +31,6 @@ app.post("/api/products", async (req, res) => {
   }
 });
 
-mongoose
-  .connect(process.env.DB_Connection)
-  .then(() => {
-    console.log("connected to database");
-    app.listen(3000, () => {
-      console.log("server is running on http://localhost:3000");
-    });
-  })
-  .catch(() => {
-    console.log("connection failed");
-  });
+app.listen(port, () => {
+  console.log(`server is running on http://localhost:${port}`);
+});
