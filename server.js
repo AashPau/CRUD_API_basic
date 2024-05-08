@@ -7,7 +7,7 @@ Connect_DB();
 
 app.use(express.json());
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 app.get("/", (req, res) => {
   res.send("hello from the other side");

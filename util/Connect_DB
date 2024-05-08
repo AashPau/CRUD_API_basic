@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
+import "dotenv/config";
 
 export const Connect_DB = () => {
   try {
+    console.log(process.env);
     const con = mongoose.connect(process.env.DB_Connection);
     con && console.log("connected to database");
   } catch (error) {
